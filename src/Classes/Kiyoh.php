@@ -52,7 +52,7 @@ class Kiyoh
                 'location_id' => $kiyohClient['locationId'],
                 'first_name' => 'Voornaam',
                 'last_name' => 'Achternaam',
-                'invite_email' => Customsetting::get('site_from_email'),
+                'invite_email' => 'noreply@example.com',
                 'delay' => 0,
                 'ref_code' => 'Test invite',
                 'language' => 'nl',
