@@ -25,8 +25,9 @@ class KiyohSettingsPage extends Page
         $formData = [];
         $sites = Sites::getSites();
         foreach ($sites as $site) {
-            $formData["kiyoh_client_id_{$site['id']}"] = Customsetting::get('kiyoh_client_id', $site['id'], 'same');
-            $formData["kiyoh_auth_token_{$site['id']}"] = Customsetting::get('kiyoh_auth_token', $site['id'], 'order');
+            $formData["kiyoh_api_key_{$site['id']}"] = Customsetting::get('kiyoh_api_key', $site['id']);
+            $formData["kiyoh_location_id_{$site['id']}"] = Customsetting::get('kiyoh_location_id', $site['id']);
+            $formData["kiyoh_delay_{$site['id']}"] = Customsetting::get('kiyoh_delay', $site['id'], 0);
             $formData["kiyoh_connected_{$site['id']}"] = Customsetting::get('kiyoh_connected', $site['id'], 0);
             $formData["kiyoh_connection_error_{$site['id']}"] = Customsetting::get('kiyoh_connection_error', $site['id'], '');
         }
@@ -56,12 +57,18 @@ class KiyohSettingsPage extends Page
                         'default' => 1,
                         'lg' => 2,
                     ]),
-                TextInput::make("kiyoh_client_id_{$site['id']}")
-                    ->label('Kiyoh Client ID')
+                TextInput::make("kiyoh_api_key_{$site['id']}")
+                    ->label('Kiyoh API key')
                     ->maxLength(255),
-                TextInput::make("kiyoh_auth_token_{$site['id']}")
-                    ->label('Kiyoh Auth Token')
+                TextInput::make("kiyoh_location_id_{$site['id']}")
+                    ->label('Kiyoh location ID')
                     ->maxLength(255),
+                TextInput::make("kiyoh_delay_{$site['id']}")
+                    ->label('Kiyoh delay')
+                    ->helperText('Aantal dagen na betaling dat de review mail verstuurd wordt.')
+                ->numeric()
+                ->minValue(0)
+                ->maxValue(365 * 5),
             ];
 
             $tabs[] = Tab::make($site['id'])
@@ -88,8 +95,9 @@ class KiyohSettingsPage extends Page
         $sites = Sites::getSites();
 
         foreach ($sites as $site) {
-            Customsetting::set('kiyoh_client_id', $this->form->getState()["kiyoh_client_id_{$site['id']}"], $site['id']);
-            Customsetting::set('kiyoh_auth_token', $this->form->getState()["kiyoh_auth_token_{$site['id']}"], $site['id']);
+            Customsetting::set('kiyoh_api_key', $this->form->getState()["kiyoh_api_key_{$site['id']}"], $site['id']);
+            Customsetting::set('kiyoh_location_id', $this->form->getState()["kiyoh_location_id_{$site['id']}"], $site['id']);
+            Customsetting::set('kiyoh_delay', $this->form->getState()["kiyoh_delay_{$site['id']}"], $site['id']);
             Customsetting::set('kiyoh_connected', Kiyoh::isConnected($site['id']), $site['id']);
         }
 
