@@ -3,16 +3,16 @@
 namespace Dashed\DashedEcommerceKiyoh\Classes;
 
 use Dashed\DashedCore\Classes\Sites;
+use Illuminate\Support\Facades\Http;
 use Dashed\DashedCore\Models\Customsetting;
 use Dashed\DashedEcommerceCore\Models\Order;
 use Dashed\DashedEcommerceCore\Models\OrderLog;
-use Illuminate\Support\Facades\Http;
 
 class Kiyoh
 {
     public static function initialize($siteId = null)
     {
-        if (!$siteId) {
+        if (! $siteId) {
             $siteId = Sites::getActive();
         }
 
@@ -20,7 +20,7 @@ class Kiyoh
         $locationId = Customsetting::get('kiyoh_location_id', $siteId);
         $delay = Customsetting::get('kiyoh_delay', $siteId);
 
-        if (!$apiKey || !$locationId) {
+        if (! $apiKey || ! $locationId) {
             return;
         }
 
@@ -28,19 +28,19 @@ class Kiyoh
             'apiKey' => $apiKey,
             'locationId' => $locationId,
             'delay' => $delay,
-            'baseUrl' => 'https://www.kiyoh.com'
+            'baseUrl' => 'https://www.kiyoh.com',
         ];
     }
 
     public static function isConnected($siteId = null)
     {
-        if (!$siteId) {
+        if (! $siteId) {
             $siteId = Sites::getActive();
         }
 
         $kiyohClient = self::initialize($siteId);
 
-        if (!$kiyohClient) {
+        if (! $kiyohClient) {
             return false;
         }
 
