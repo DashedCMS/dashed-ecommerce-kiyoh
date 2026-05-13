@@ -14,15 +14,17 @@ class DashedEcommerceKiyohServiceProvider extends PackageServiceProvider
     {
         cms()->registerSettingsPage(KiyohSettingsPage::class, 'Kiyoh', 'chat-bubble-left-ellipsis', 'Koppel Kiyoh');
 
-        cms()->registerIntegration([
-            'slug' => 'kiyoh',
-            'label' => 'Kiyoh',
-            'icon' => 'heroicon-o-star',
-            'category' => 'reviews',
-            'settings_page' => KiyohSettingsPage::class,
-            'health_check' => fn (?string $siteId = null) => \Dashed\DashedCore\Integrations\IntegrationHealth::fromSettings(['kiyoh_api_key', 'kiyoh_location_id'], $siteId, 'API key of location ID ontbreekt'),
-            'package' => 'dashed-ecommerce-kiyoh',
-        ]);
+        if (method_exists(cms(), 'registerIntegration')) {
+            cms()->registerIntegration([
+                'slug' => 'kiyoh',
+                'label' => 'Kiyoh',
+                'icon' => 'heroicon-o-star',
+                'category' => 'reviews',
+                'settings_page' => KiyohSettingsPage::class,
+                'health_check' => fn (?string $siteId = null) => \Dashed\DashedCore\Integrations\IntegrationHealth::fromSettings(['kiyoh_api_key', 'kiyoh_location_id'], $siteId, 'API key of location ID ontbreekt'),
+                'package' => 'dashed-ecommerce-kiyoh',
+            ]);
+        }
 
         cms()->registerSettingsDocs(
             page: \Dashed\DashedEcommerceKiyoh\Filament\Pages\Settings\KiyohSettingsPage::class,
