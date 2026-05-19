@@ -2,11 +2,17 @@
 
 namespace Dashed\DashedEcommerceKiyoh\Listeners;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Dashed\DashedEcommerceKiyoh\Classes\Kiyoh;
 use Dashed\DashedEcommerceCore\Events\Orders\OrderMarkedAsPaidEvent;
 
-class SendReviewEmailListener
+class SendReviewEmailListener implements ShouldQueue
 {
+    use InteractsWithQueue;
+    use Queueable;
+
     /**
      * Create the event listener.
      *
