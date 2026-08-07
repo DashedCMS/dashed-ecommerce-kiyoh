@@ -62,14 +62,14 @@ class KiyohSettingsPage extends Page
                         'lg' => 2,
                     ]),
                 TextInput::make("kiyoh_api_key_{$site['id']}")
-                    ->label('Kiyoh API key')
+                    ->label(__('Kiyoh API key'))
                     ->maxLength(255),
                 TextInput::make("kiyoh_location_id_{$site['id']}")
-                    ->label('Kiyoh location ID')
+                    ->label(__('Kiyoh location ID'))
                     ->maxLength(255),
                 TextInput::make("kiyoh_delay_{$site['id']}")
-                    ->label('Kiyoh delay')
-                    ->helperText('Aantal dagen na betaling dat de review mail verstuurd wordt.')
+                    ->label(__('Kiyoh delay'))
+                    ->helperText(__('Aantal dagen na betaling dat de review mail verstuurd wordt.'))
                 ->numeric()
                 ->minValue(0)
                 ->maxValue(365 * 5),
@@ -102,7 +102,7 @@ class KiyohSettingsPage extends Page
         }
 
         Notification::make()
-            ->title('De Kiyoh instellingen zijn opgeslagen')
+            ->title(__('De Kiyoh instellingen zijn opgeslagen'))
             ->success()
             ->send();
 
