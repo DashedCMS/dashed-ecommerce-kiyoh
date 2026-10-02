@@ -1,1 +1,13 @@
-{}
+{
+    "Aantal beoordelingen": "Number of ratings",
+    "Aantal dagen na betaling dat de review mail verstuurd wordt.": "Number of days after payment that the review email is sent.",
+    "Cijfer": "Digit",
+    "De Kiyoh instellingen zijn opgeslagen": "The Kiyoh settings have been saved",
+    "Introductietekst": "Introduction text",
+    "Kiyoh": "Kiyoh",
+    "Kiyoh API key": "Kiyoh API key",
+    "Kiyoh beoordelingscijfer": "Kiyoh rating",
+    "Kiyoh delay": "Kiyoh delay",
+    "Kiyoh location ID": "Kiyoh location ID",
+    "Koppel Kiyoh": "Connect Kiyoh"
+}
