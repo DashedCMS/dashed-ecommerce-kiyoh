@@ -66,7 +66,8 @@ MARKDOWN,
 
         $package
             ->hasViews()
-            ->name('dashed-ecommerce-kiyoh');
+            ->name('dashed-ecommerce-kiyoh')
+            ->hasTranslations();
 
         cms()->builder('plugins', [
             new DashedEcommerceKiyohPlugin(),
