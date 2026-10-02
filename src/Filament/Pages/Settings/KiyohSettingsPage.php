@@ -16,6 +16,7 @@ use Dashed\DashedCore\Traits\HasSettingsPermission;
 
 class KiyohSettingsPage extends Page
 {
+    use \Dashed\DashedCore\Filament\Concerns\TranslatesPageLabels;
     use HasSettingsPermission;
 
     protected static bool $shouldRegisterNavigation = false;
